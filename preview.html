@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BLACK CITY RP</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background:
+                radial-gradient(circle at top, #252525 0%, #080808 45%, #000 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        /* NAVBAR */
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 18px 7%;
+            background: rgba(0,0,0,.82);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 23px;
+            font-weight: bold;
+            letter-spacing: 2px;
+        }
+
+        .logo span {
+            color: #e00000;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 28px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: .3s;
+        }
+
+        nav a:hover {
+            color: #e00000;
+        }
+
+        /* HERO */
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 100px 20px 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: #e00000;
+            filter: blur(180px);
+            opacity: .15;
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 9vw, 100px);
+            letter-spacing: 8px;
+            text-shadow:
+                0 0 15px rgba(255,0,0,.4),
+                0 0 40px rgba(255,0,0,.15);
+        }
+
+        .hero h1 span {
+            color: #e00000;
+        }
+
+        .hero p {
+            margin-top: 15px;
+            color: #aaa;
+            font-size: 19px;
+        }
+
+        .hero-buttons {
+            margin-top: 35px;
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: .3s;
+            border: 1px solid #444;
+        }
+
+        .btn-red {
+            background: #b90000;
+            border-color: #e00000;
+            box-shadow: 0 0 25px rgba(220,0,0,.2);
+        }
+
+        .btn-red:hover {
+            background: #e00000;
+            transform: translateY(-4px);
+            box-shadow: 0 0 35px rgba(220,0,0,.45);
+        }
+
+        .btn-dark {
+            background: #111;
+        }
+
+        .btn-dark:hover {
+            border-color: #e00000;
+            transform: translateY(-4px);
+        }
+
+        /* SECTIONS */
+
+        section {
+            padding: 90px 7%;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-title h2 {
+            font-size: 38px;
+        }
+
+        .section-title span {
+            color: #e00000;
+        }
+
+        .section-title p {
+            color: #888;
+            margin-top: 10px;
+        }
+
+        /* RULES */
+
+        .rules-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 18px;
+        }
+
+        .rule {
+            background: linear-gradient(145deg, #151515, #090909);
+            border: 1px solid #292929;
+            border-right: 4px solid #b00000;
+            border-radius: 12px;
+            padding: 22px;
+            transition: .3s;
+        }
+
+        .rule:hover {
+            transform: translateY(-5px);
+            border-color: #e00000;
+            box-shadow: 0 10px 30px rgba(0,0,0,.5);
+        }
+
+        .rule h3 {
+            color: #fff;
+            margin-bottom: 12px;
+            font-size: 20px;
+        }
+
+        .rule h3 span {
+            color: #e00000;
+        }
+
+        .rule p {
+            color: #aaa;
+            line-height: 1.8;
+        }
+
+        /* TERMS */
+
+        .terms {
+            background: #050505;
+        }
+
+        .terms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 18px;
+        }
+
+        .term {
+            padding: 20px;
+            border: 1px solid #292929;
+            background: #101010;
+            border-radius: 10px;
+            transition: .3s;
+        }
+
+        .term:hover {
+            border-color: #b00000;
+            transform: translateY(-4px);
+        }
+
+        .term strong {
+            display: block;
+            font-size: 18px;
+            color: #e00000;
+            margin-bottom: 8px;
+        }
+
+        .term p {
+            color: #aaa;
+        }
+
+        /* JOIN */
+
+        .join {
+            text-align: center;
+            background:
+                linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.95)),
+                radial-gradient(circle, #420000, #000 60%);
+        }
+
+        .join h2 {
+            font-size: 45px;
+            margin-bottom: 15px;
+        }
+
+        .join p {
+            color: #999;
+            margin-bottom: 30px;
+        }
+
+        .join-button {
+            display: inline-block;
+            padding: 18px 45px;
+            background: #5865F2;
+            color: white;
+            text-decoration: none;
+            border-radius: 9px;
+            font-size: 19px;
+            font-weight: bold;
+            transition: .3s;
+            box-shadow: 0 0 30px rgba(88,101,242,.25);
+        }
+
+        .join-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 45px rgba(88,101,242,.5);
+        }
+
+        /* FOOTER */
+
+        footer {
+            padding: 25px;
+            text-align: center;
+            border-top: 1px solid #222;
+            color: #666;
+            background: #000;
+        }
+
+        footer span {
+            color: #e00000;
+        }
+
+        /* MOBILE */
+
+        @media(max-width: 700px) {
+
+            nav {
+                padding: 15px 20px;
+            }
+
+            nav ul {
+                display: none;
+            }
+
+            .hero h1 {
+                letter-spacing: 3px;
+            }
+
+            .hero p {
+                font-size: 16px;
+            }
+
+            section {
+                padding: 70px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 30px;
+            }
+
+            .join h2 {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+    <div class="logo">
+        BLACK <span>CITY</span> RP
+    </div>
+
+    <ul>
+        <li><a href="#home">الرئيسية</a></li>
+        <li><a href="#rules">القوانين</a></li>
+        <li><a href="#terms">المصطلحات</a></li>
+        <li><a href="#join">الانضمام</a></li>
+    </ul>
+</nav>
+
+
+<!-- HERO -->
+
+<header class="hero" id="home">
+
+    <div class="hero-content">
+
+        <h1>
+            BLACK <span>CITY</span>
+        </h1>
+
+        <p>
+            BLACK CITY RP — عيش قصتك... اصنع أسطورتك
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#rules" class="btn btn-red">
+                📜 قوانين المدينة
+            </a>
+
+            <a href="#terms" class="btn btn-dark">
+                📚 المصطلحات
+            </a>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- ROLE PLAY RULES -->
+
+<section id="rules">
+
+    <div class="section-title">
+
+        <h2>
+            قوانين <span>Role Play</span>
+        </h2>
+
+        <p>
+            يجب على جميع اللاعبين الالتزام بقوانين تقمص الشخصية
+        </p>
+
+    </div>
+
+
+    <div class="rules-grid">
+
+        <div class="rule">
+            <h3>🎭 Role Play</h3>
+            <p>تقمص شخصية بكل أدوارها والتصرف بطريقة واقعية تناسب الشخصية والسيناريو.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Meta Gaming</span></h3>
+            <p>استخدام معلومات خارجية تم الحصول عليها من خارج اللعبة وتطبيقها داخل اللعبة.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Power Gaming</span></h3>
+            <p>إجبار لاعب على أفعال خارج السيناريو أو القيام بتصرفات غير منطقية.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>RDM</span></h3>
+            <p>القتل بدون سبب أو بدون وجود سيناريو يبرر عملية القتل.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>VDM</span></h3>
+            <p>استخدام المركبة للتخريب أو دهس اللاعبين بدون سبب منطقي.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Fear RP</span></h3>
+            <p>يجب الالتزام بمبدأ الخوف على حياتك والتصرف بما يتناسب مع خطورة الموقف.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>New Life Rule - NLR</span></h3>
+            <p>عند الوفاة يجب نسيان ما حدث قبلها بدقيقة وعدم استخدام معلومات حياتك السابقة.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Combat Logging</span></h3>
+            <p>الخروج من المدينة أو اللعبة لتجنب العقوبات أو الهروب من سيناريو قائم.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Spam</span></h3>
+            <p>التكرار المزعج للرسائل أو الأفعال بطريقة تؤثر على تجربة اللاعبين.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Safe Zone</span></h3>
+            <p>ممنوع القتال أو القيام بأي أعمال إجرامية داخل المناطق الآمنة.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Revenge Kill</span></h3>
+            <p>الرجوع للانتقام بعد الموت مباشرة بدون إنشاء سيناريو جديد.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>TK</span></h3>
+            <p>قتل أو إلحاق الضرر بصاحبك في العصابة.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Green Zone</span></h3>
+            <p>أماكن يمنع فيها استخدام الأسلحة أو العنف نهائياً.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Fail RP</span></h3>
+            <p>مخالفة قوانين الرول بلاي أو التصرف بطريقة غير واقعية.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Cop Baiting</span></h3>
+            <p>استفزاز الشرطة بدون سبب فقط لجذبهم أو إدخالهم في سيناريو.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>SK</span></h3>
+            <p>القتل عند الريسباون.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Value of Life</span></h3>
+            <p>تقدير حياتك وعدم التهور في المواقف الخطيرة.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>LTA</span></h3>
+            <p>الخروج لتجنب أحد الأفعال، مثل الخروج أثناء القبض أو السيناريو أو الخطف.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Mixing</span></h3>
+            <p>الخلط بين الكلام خارج اللعبة والكلام داخل اللعبة.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Hostage RP</span></h3>
+            <p>يجب أن يكون هناك سبب منطقي للخطف والتعامل مع الرهينة بواقعية.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Scamming Rules</span></h3>
+            <p>ممنوع النصب بطرق غير واقعية أو خارج إطار الرول بلاي.</p>
+        </div>
+
+        <div class="rule">
+            <h3><span>Trolling</span></h3>
+            <p>التخريب أو الاستفزاز بدون هدف داخل الرول بلاي.</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- TERMS -->
+
+<section id="terms" class="terms">
+
+    <div class="section-title">
+
+        <h2>
+            مصطلحات <span>المدينة</span>
+        </h2>
+
+        <p>
+            المصطلحات المستخدمة داخل BLACK CITY RP
+        </p>
+
+    </div>
+
+
+    <div class="terms-grid">
+
+        <div class="term">
+            <strong>👮🏻‍♂️ [المحكمة العليا]</strong>
+            <p>»» {ادمن}</p>
+        </div>
+
+        <div class="term">
+            <strong>🚫 [باند]</strong>
+            <p>»» {سافر أو طرد من المدينة}</p>
+        </div>
+
+        <div class="term">
+            <strong>[جلتش]</strong>
+            <p>»» {سحر أسود}</p>
+        </div>
+
+        <div class="term">
+            <strong>[الديسكورد]</strong>
+            <p>»» راديو خارجي</p>
+        </div>
+
+        <div class="term">
+            <strong>🎙️ [مايكروفون]</strong>
+            <p>»» {أحبال صوتية}</p>
+        </div>
+
+        <div class="term">
+            <strong>🎬 [معركة أو حدث]</strong>
+            <p>»» {سيناريو}</p>
+        </div>
+
+        <div class="term">
+            <strong>📱 [جهازي]</strong>
+            <p>»» {دماغي}</p>
+        </div>
+
+        <div class="term">
+            <strong>[الفريمات]</strong>
+            <p>»» {الحرارة}</p>
+        </div>
+
+        <div class="term">
+            <strong>📺 [استريم]</strong>
+            <p>»» {عين أو تلفزيون}</p>
+        </div>
+
+        <div class="term">
+            <strong>🏙️ [السيرفر]</strong>
+            <p>»» {المدينة}</p>
+        </div>
+
+        <div class="term">
+            <strong>🆔️ [الايدي]</strong>
+            <p>»» {الهويه} 💳</p>
+        </div>
+
+        <div class="term">
+            <strong>🌪️ إعصار</strong>
+            <p>»» {إعادة تشغيل السيرفر}</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- JOIN -->
+
+<section id="join" class="join">
+
+    <h2>
+        مستعد تدخل <span>BLACK CITY RP</span>؟
+    </h2>
+
+    <p>
+        انضم إلى المدينة وابدأ قصتك من الصفر
+    </p>
+
+    <a
+        href="https://discord.gg/2pAQvzKAt"
+        target="_blank"
+        class="join-button"
+    >
+        🎮 الانضمام للسيرفر
+    </a>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+    BLACK CITY RP © 2026
+
+    <br>
+
+    <span>الفرصة لصنع أسطورتك تبدأ من هنا</span>
+
+</footer>
+
+
+</body>
+</html>
